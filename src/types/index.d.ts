@@ -1,34 +1,39 @@
+interface Data {
+    [key: string]: any;
+}
 
-declare interface CakebaseProvider {
+type Prediction = (data: Data) => boolean;
+
+export declare interface CakebaseProvider {
     /**
      * Add an object to the json file.
      * @param data the object.
      */
-    set(data: object) : Promise<void>;
+    set(data: Data): Promise<void>;
 
     /**
      * Retrieve for objects in the json file
      * @param prediciton the prediction to find the objects.
      */
-    get(prediciton: void) : Promise<object[]>
+    get(prediciton: Prediction): Promise<Data[]>;
 
     /**
      * Remove objects in the json file
      * @param prediciton the prediction to find the objects
      */
-    remove(prediciton: void) : Promise<void>;
+    remove(prediciton: Prediction): Promise<void>;
 
     /**
      * Update objects in the json file
      * @param prediciton the prediction to find the objects
      * @param data Data you want to edit or add
      */
-    update(prediciton: void, data : object) : Promise<void>;
+    update(prediciton: Prediction, data: Data): Promise<void>;
 
     /**
      * Delete all objects in the json file
      */
-    clear() : Promise<void>;
+    clear(): Promise<void>;
 }
 
 /**
@@ -36,8 +41,7 @@ declare interface CakebaseProvider {
  * 
  * Initalize the json database.
  * @param root The json file path where our objects are stored.
- * 
  */
-declare function _CakebaseInstance(root : string) : CakebaseProvider;
+declare function CakebaseInstance(root: string): CakebaseProvider;
 
-export = _CakebaseInstance;
+export default CakebaseInstance;
