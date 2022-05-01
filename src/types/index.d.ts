@@ -1,8 +1,8 @@
-interface Data {
+export interface Data {
     [key: string]: any;
 }
 
-type Prediction = (data: Data) => boolean;
+export type Prediction = (data: Data) => boolean;
 
 export declare interface CakebaseProvider {
     /**
